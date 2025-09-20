@@ -92,7 +92,10 @@ export default function App() {
 
   return (
     <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background relative overflow-x-hidden">
+      {/* Decorative background overlay */}
+      <div className="app-background" aria-hidden="true"></div>
+      <div className="beam-accent" aria-hidden="true"></div>
       {/* Enhanced Header with Gradient */}
       <header className="border-b bg-gradient-to-r from-card via-card to-card/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-4 py-3">
@@ -261,7 +264,7 @@ export default function App() {
       </header>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-6 space-y-6">
+      <div id="main" className="container mx-auto px-4 py-6 space-y-6 relative z-10">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           {/* Desktop Navigation - Hidden on mobile */}
           <div className="mb-6 hidden xl:block">
@@ -348,7 +351,7 @@ export default function App() {
       </div>
 
       {/* Status Bar */}
-      <footer className="border-t bg-gradient-to-r from-card via-card to-card/95 mt-auto backdrop-blur-sm">
+      <footer className="border-t bg-gradient-to-r from-card via-card to-card/95 mt-auto backdrop-blur-sm relative z-10">
         <div className="container mx-auto px-4 py-2">
           <div className="flex items-center justify-between text-xs text-muted-foreground">
             <div className="flex items-center gap-4">
