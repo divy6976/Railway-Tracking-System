@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-import { Brain, CheckCircle, XCircle, Clock, AlertTriangle, TrendingUp } from "lucide-react";
+import { Brain, CheckCircle, XCircle, Clock, AlertTriangle, TrendingUp, Sparkles, Zap } from "lucide-react";
 
 interface Recommendation {
   id: string;
@@ -101,8 +101,10 @@ export function AIRecommendations() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="flex items-center gap-2">
-            <Brain className="h-5 w-5" />
+          <h2 className="flex items-center gap-2 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+            <div className="p-2 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 shadow-lg">
+              <Brain className="h-5 w-5 text-white" />
+            </div>
             AI Decision Recommendations
           </h2>
           <p className="text-muted-foreground">Intelligent suggestions to optimize railway operations</p>
@@ -114,14 +116,14 @@ export function AIRecommendations() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {recommendations.map((rec) => (
-          <Card key={rec.id} className="relative">
+          <Card key={rec.id} className="relative hover:shadow-lg transition-all duration-300 hover:scale-102 border-0 bg-gradient-to-br from-card to-card/80">
             <CardHeader className="pb-3">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-2">
                   {getTypeIcon(rec.type)}
                   <CardTitle className="text-base">{rec.title}</CardTitle>
                 </div>
-                <Badge className={getTypeColor(rec.type)}>
+                <Badge className={`${getTypeColor(rec.type)} shadow-sm`}>
                   {rec.type.replace('_', ' ')}
                 </Badge>
               </div>
@@ -149,7 +151,7 @@ export function AIRecommendations() {
                 </div>
               </div>
 
-              <div className="p-3 rounded-lg bg-muted/50">
+              <div className="p-3 rounded-lg bg-gradient-to-r from-muted/50 to-muted/30 border border-border/50">
                 <h4 className="text-sm font-medium mb-2">AI Reasoning:</h4>
                 <p className="text-sm text-muted-foreground">{rec.reasoning}</p>
               </div>
@@ -167,11 +169,11 @@ export function AIRecommendations() {
               </div>
 
               <div className="flex gap-2 pt-2">
-                <Button size="sm" className="flex-1">
+                <Button size="sm" className="flex-1 hover:scale-105 transition-transform">
                   <CheckCircle className="h-4 w-4 mr-1" />
                   Approve
                 </Button>
-                <Button size="sm" variant="outline" className="flex-1">
+                <Button size="sm" variant="outline" className="flex-1 hover:scale-105 transition-transform">
                   <XCircle className="h-4 w-4 mr-1" />
                   Reject
                 </Button>
@@ -185,25 +187,31 @@ export function AIRecommendations() {
       </div>
 
       {/* AI Performance Stats */}
-      <Card>
+      <Card className="hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-card to-card/80">
         <CardHeader>
-          <CardTitle>AI Performance Today</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <Sparkles className="h-5 w-5 text-yellow-500" />
+            AI Performance Today
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-green-600">127</div>
+            <div className="text-center p-4 rounded-lg bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 hover:scale-105 transition-transform">
+              <div className="text-2xl font-bold text-green-600 flex items-center justify-center gap-1">
+                <Zap className="h-5 w-5" />
+                127
+              </div>
               <div className="text-sm text-muted-foreground">Recommendations</div>
             </div>
-            <div className="text-center">
+            <div className="text-center p-4 rounded-lg bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 hover:scale-105 transition-transform">
               <div className="text-2xl font-bold text-blue-600">89%</div>
               <div className="text-sm text-muted-foreground">Acceptance Rate</div>
             </div>
-            <div className="text-center">
+            <div className="text-center p-4 rounded-lg bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950 dark:to-purple-900 hover:scale-105 transition-transform">
               <div className="text-2xl font-bold text-purple-600">12.3%</div>
               <div className="text-sm text-muted-foreground">Delay Reduction</div>
             </div>
-            <div className="text-center">
+            <div className="text-center p-4 rounded-lg bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950 dark:to-orange-900 hover:scale-105 transition-transform">
               <div className="text-2xl font-bold text-orange-600">€1,240</div>
               <div className="text-sm text-muted-foreground">Cost Savings</div>
             </div>

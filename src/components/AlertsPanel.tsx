@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { ScrollArea } from "./ui/scroll-area";
-import { AlertCircle, AlertTriangle, Info, CheckCircle, X, Clock, MapPin } from "lucide-react";
+import { AlertCircle, AlertTriangle, Info, CheckCircle, X, Clock, MapPin, Shield, Zap } from "lucide-react";
 import { useState } from "react";
 
 interface Alert {
@@ -144,8 +144,10 @@ export function AlertsPanel() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="flex items-center gap-2">
-            <AlertCircle className="h-5 w-5" />
+          <h2 className="flex items-center gap-2 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+            <div className="p-2 rounded-lg bg-gradient-to-br from-red-500 to-orange-500 shadow-lg">
+              <AlertCircle className="h-5 w-5 text-white" />
+            </div>
             Alerts & Notifications
           </h2>
           <p className="text-muted-foreground">System alerts, warnings, and status updates</p>
@@ -156,7 +158,7 @@ export function AlertsPanel() {
               {unacknowledgedCount} Unacknowledged
             </Badge>
           )}
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" className="hover:scale-105 transition-transform">
             Clear All
           </Button>
         </div>
@@ -164,7 +166,7 @@ export function AlertsPanel() {
 
       {/* Alert Summary */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="border-red-200">
+        <Card className="border-red-200 hover:shadow-lg transition-all duration-300 hover:scale-105 bg-gradient-to-br from-red-50 to-red-100 dark:from-red-950 dark:to-red-900">
           <CardContent className="p-4">
             <div className="flex items-center gap-2">
               <AlertCircle className="h-4 w-4 text-red-600" />
@@ -173,7 +175,7 @@ export function AlertsPanel() {
             <div className="text-2xl font-bold text-red-600 mt-1">{criticalAlerts.length}</div>
           </CardContent>
         </Card>
-        <Card className="border-yellow-200">
+        <Card className="border-yellow-200 hover:shadow-lg transition-all duration-300 hover:scale-105 bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-950 dark:to-yellow-900">
           <CardContent className="p-4">
             <div className="flex items-center gap-2">
               <AlertTriangle className="h-4 w-4 text-yellow-600" />
@@ -182,7 +184,7 @@ export function AlertsPanel() {
             <div className="text-2xl font-bold text-yellow-600 mt-1">{warningAlerts.length}</div>
           </CardContent>
         </Card>
-        <Card className="border-blue-200">
+        <Card className="border-blue-200 hover:shadow-lg transition-all duration-300 hover:scale-105 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900">
           <CardContent className="p-4">
             <div className="flex items-center gap-2">
               <Info className="h-4 w-4 text-blue-600" />
@@ -193,7 +195,7 @@ export function AlertsPanel() {
             </div>
           </CardContent>
         </Card>
-        <Card className="border-green-200">
+        <Card className="border-green-200 hover:shadow-lg transition-all duration-300 hover:scale-105 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
           <CardContent className="p-4">
             <div className="flex items-center gap-2">
               <CheckCircle className="h-4 w-4 text-green-600" />
@@ -207,9 +209,12 @@ export function AlertsPanel() {
       </div>
 
       {/* Alerts List */}
-      <Card>
+      <Card className="hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-card to-card/80">
         <CardHeader>
-          <CardTitle>Active Alerts</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <Shield className="h-5 w-5 text-blue-500" />
+            Active Alerts
+          </CardTitle>
         </CardHeader>
         <CardContent className="p-0">
           <ScrollArea className="h-96">
@@ -218,7 +223,7 @@ export function AlertsPanel() {
                 <div
                   key={alert.id}
                   className={`p-4 rounded-lg border-l-4 ${getAlertColor(alert.type)} ${
-                    alert.acknowledged ? "opacity-60" : ""
+                    alert.acknowledged ? "opacity-60" : "hover:shadow-md transition-all duration-200"
                   }`}
                 >
                   <div className="flex items-start justify-between">
@@ -260,6 +265,7 @@ export function AlertsPanel() {
                           size="sm"
                           variant="outline"
                           onClick={() => acknowledgeAlert(alert.id)}
+                          className="hover:scale-105 transition-transform"
                         >
                           Acknowledge
                         </Button>
@@ -268,6 +274,7 @@ export function AlertsPanel() {
                         size="sm"
                         variant="ghost"
                         onClick={() => dismissAlert(alert.id)}
+                        className="hover:scale-105 transition-transform"
                       >
                         <X className="h-4 w-4" />
                       </Button>

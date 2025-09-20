@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Progress } from "./ui/progress";
-import { Activity, Clock, TrendingUp, Users } from "lucide-react";
+import { Activity, Clock, TrendingUp, Users, Zap, AlertTriangle } from "lucide-react";
 
 interface KPI {
   title: string;
@@ -53,20 +53,24 @@ export function Dashboard() {
   return (
     <div className="space-y-6">
       <div>
-        <h2>System Overview</h2>
+        <h2 className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">System Overview</h2>
         <p className="text-muted-foreground">Real-time monitoring of railway section performance</p>
       </div>
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
         {kpis.map((kpi, index) => (
-          <Card key={index}>
+          <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:scale-105 border-0 bg-gradient-to-br from-card to-card/80">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">{kpi.title}</CardTitle>
-              {kpi.icon}
+              <div className="p-2 rounded-lg bg-primary/10">
+                {kpi.icon}
+              </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{kpi.value}</div>
+              <div className="text-2xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
+                {kpi.value}
+              </div>
               <p className="text-xs text-muted-foreground">
                 <span className={
                   kpi.trend === "up" ? "text-green-600" : kpi.trend === "down" ? "text-red-600" : "text-gray-600"
@@ -82,9 +86,12 @@ export function Dashboard() {
 
       {/* System Status */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card>
+        <Card className="hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-card to-card/80">
           <CardHeader>
-            <CardTitle>System Health</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <Zap className="h-5 w-5 text-green-500" />
+              System Health
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between">
@@ -108,33 +115,36 @@ export function Dashboard() {
             <div className="pt-2">
               <div className="flex justify-between text-sm mb-2">
                 <span>Overall Health</span>
-                <span>85%</span>
+                <span className="font-medium text-green-600">85%</span>
               </div>
-              <Progress value={85} className="h-2" />
+              <Progress value={85} className="h-3" />
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-card to-card/80">
           <CardHeader>
-            <CardTitle>Active Operations</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <Activity className="h-5 w-5 text-blue-500" />
+              Active Operations
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between p-2 rounded-lg hover:bg-muted/50 transition-colors">
               <span>Trains in Motion</span>
-              <span>18</span>
+              <Badge variant="secondary" className="bg-blue-100 text-blue-800">18</Badge>
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between p-2 rounded-lg hover:bg-muted/50 transition-colors">
               <span>Trains at Stations</span>
-              <span>9</span>
+              <Badge variant="secondary" className="bg-green-100 text-green-800">9</Badge>
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between p-2 rounded-lg hover:bg-muted/50 transition-colors">
               <span>Maintenance Windows</span>
-              <span>2</span>
+              <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">2</Badge>
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between p-2 rounded-lg hover:bg-muted/50 transition-colors">
               <span>Emergency Holds</span>
-              <span>0</span>
+              <Badge variant="secondary" className="bg-gray-100 text-gray-800">0</Badge>
             </div>
           </CardContent>
         </Card>

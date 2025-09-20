@@ -4,6 +4,7 @@ import { Button } from "./components/ui/button";
 import { Badge } from "./components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./components/ui/sheet";
+import { Separator } from "./components/ui/separator";
 import { 
   LayoutDashboard, 
   MapPin, 
@@ -17,7 +18,9 @@ import {
   Bell,
   Moon,
   Sun,
-  Menu
+  Menu,
+  Zap,
+  Activity
 } from "lucide-react";
 
 import { Dashboard } from "./components/Dashboard";
@@ -90,28 +93,33 @@ export default function App() {
   return (
     <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>
       <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b bg-card sticky top-0 z-50">
+      {/* Enhanced Header with Gradient */}
+      <header className="border-b bg-gradient-to-r from-card via-card to-card/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-4 py-3">
           {/* Desktop Header (>1030px) */}
           <div className="hidden xl:flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                  <MapPin className="h-5 w-5 text-primary-foreground" />
+                <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center shadow-md">
+                  <MapPin className="h-5 w-5 text-primary-foreground drop-shadow-sm" />
                 </div>
                 <div>
-                  <h1 className="text-lg font-semibold">Railway Control Center</h1>
+                  <h1 className="text-lg font-semibold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
+                    Railway Control Center
+                  </h1>
                   <p className="text-xs text-muted-foreground">Section A - Central District</p>
                 </div>
               </div>
               
               <div className="flex items-center gap-2">
-                <Badge variant={emergencyMode ? "destructive" : "secondary"}>
+                <Badge 
+                  variant={emergencyMode ? "destructive" : "secondary"}
+                  className="animate-pulse shadow-sm"
+                >
                   {emergencyMode ? "EMERGENCY MODE" : "NORMAL OPERATION"}
                 </Badge>
-                <Badge variant="outline" className="bg-green-50 dark:bg-green-950 text-green-700 dark:text-green-300 border-green-200 dark:border-green-800">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-1"></div>
+                <Badge variant="outline" className="bg-green-50 dark:bg-green-950 text-green-700 dark:text-green-300 border-green-200 dark:border-green-800 shadow-sm">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mr-1 animate-pulse"></div>
                   System Operational
                 </Badge>
               </div>
@@ -122,17 +130,17 @@ export default function App() {
                 <div className="font-medium">Controller A</div>
                 <div className="text-muted-foreground">Day Shift</div>
               </div>
-              <Button variant="outline" size="sm" onClick={toggleDarkMode}>
+              <Button variant="outline" size="sm" onClick={toggleDarkMode} className="hover:scale-105 transition-transform">
                 {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
               </Button>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="hover:scale-105 transition-transform">
                 <Shield className="h-4 w-4 mr-2" />
                 Supervisor
               </Button>
               {criticalAlerts > 0 && (
-                <Button variant="destructive" size="sm" className="relative">
+                <Button variant="destructive" size="sm" className="relative hover:scale-105 transition-transform animate-pulse">
                   <Bell className="h-4 w-4" />
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-600 text-white text-xs rounded-full flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-600 text-white text-xs rounded-full flex items-center justify-center animate-bounce">
                     {criticalAlerts}
                   </span>
                 </Button>
@@ -183,7 +191,7 @@ export default function App() {
                     
                     {/* User Info in Mobile Menu */}
                     <div className="mt-6 pt-4 border-t">
-                      <div className="flex items-center gap-3 p-3 bg-secondary rounded-lg">
+                      <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-secondary to-secondary/80 rounded-lg shadow-sm">
                         <Shield className="h-5 w-5 text-primary" />
                         <div>
                           <div className="font-medium text-sm">Controller A</div>
@@ -196,7 +204,7 @@ export default function App() {
 
                 {/* Compact Logo */}
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 bg-primary rounded-md flex items-center justify-center">
+                  <div className="w-7 h-7 bg-gradient-to-br from-primary to-primary/80 rounded-md flex items-center justify-center shadow-md">
                     <MapPin className="h-4 w-4 text-primary-foreground" />
                   </div>
                   <div>
@@ -208,13 +216,13 @@ export default function App() {
 
               {/* Right Side Actions */}
               <div className="flex items-center gap-2">
-                <Button variant="outline" size="sm" onClick={toggleDarkMode}>
+                <Button variant="outline" size="sm" onClick={toggleDarkMode} className="hover:scale-105 transition-transform">
                   {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
                 </Button>
                 {criticalAlerts > 0 && (
-                  <Button variant="destructive" size="sm" className="relative">
+                  <Button variant="destructive" size="sm" className="relative hover:scale-105 transition-transform animate-pulse">
                     <Bell className="h-4 w-4" />
-                    <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-600 text-white text-xs rounded-full flex items-center justify-center">
+                    <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-600 text-white text-xs rounded-full flex items-center justify-center animate-bounce">
                       {criticalAlerts}
                     </span>
                   </Button>
@@ -235,7 +243,7 @@ export default function App() {
                   variant="outline" 
                   className="bg-green-50 dark:bg-green-950 text-green-700 dark:text-green-300 border-green-200 dark:border-green-800 text-xs"
                 >
-                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full mr-1"></div>
+                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full mr-1 animate-pulse"></div>
                   Online
                 </Badge>
               </div>
@@ -253,7 +261,7 @@ export default function App() {
       </header>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-6">
+      <div className="container mx-auto px-4 py-6 space-y-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           {/* Desktop Navigation - Hidden on mobile */}
           <div className="mb-6 hidden xl:block">
@@ -262,7 +270,7 @@ export default function App() {
                 <TabsTrigger
                   key={item.id}
                   value={item.id}
-                  className="flex flex-col gap-1 p-3 relative"
+                  className="flex flex-col gap-1 p-3 relative hover:scale-105 transition-all duration-200"
                 >
                   <item.icon className="h-4 w-4" />
                   <span className="text-xs">{item.label}</span>
@@ -278,7 +286,7 @@ export default function App() {
 
           {/* Mobile Navigation Indicator - Shows current tab */}
           <div className="mb-6 xl:hidden">
-            <Card>
+            <Card className="shadow-sm border-0 bg-gradient-to-r from-card to-card/95">
               <CardContent className="p-4">
                 <div className="flex items-center gap-2">
                   {(() => {
@@ -340,7 +348,7 @@ export default function App() {
       </div>
 
       {/* Status Bar */}
-      <footer className="border-t bg-card mt-auto">
+      <footer className="border-t bg-gradient-to-r from-card via-card to-card/95 mt-auto backdrop-blur-sm">
         <div className="container mx-auto px-4 py-2">
           <div className="flex items-center justify-between text-xs text-muted-foreground">
             <div className="flex items-center gap-4">
@@ -349,6 +357,11 @@ export default function App() {
               <span>System Load: 78%</span>
             </div>
             <div className="flex items-center gap-4">
+              <div className="flex items-center gap-1">
+                <Activity className="h-3 w-3 text-green-500" />
+                <span className="text-green-600 dark:text-green-400">Online</span>
+              </div>
+              <Separator orientation="vertical" className="h-3" />
               <span>AI Confidence: 94%</span>
               <span>Network Latency: 12ms</span>
               <span>Version 2.4.1</span>

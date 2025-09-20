@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { Train, MapPin, AlertCircle, Clock } from "lucide-react";
+import { Train, MapPin, AlertCircle, Clock, Navigation, Zap } from "lucide-react";
 
 interface TrainPosition {
   id: string;
@@ -82,18 +82,24 @@ export function TrainTracking() {
   return (
     <div className="space-y-6">
       <div>
-        <h2>Live Train Tracking</h2>
+        <h2 className="flex items-center gap-2 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+          <Navigation className="h-6 w-6" />
+          Live Train Tracking
+        </h2>
         <p className="text-muted-foreground">Real-time positions and status of all trains in the section</p>
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
         {/* Schematic Map */}
-        <Card className="xl:col-span-2">
+        <Card className="xl:col-span-2 hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-card to-card/80">
           <CardHeader>
-            <CardTitle>Railway Section Schematic</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <MapPin className="h-5 w-5 text-blue-500" />
+              Railway Section Schematic
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="relative w-full h-80 bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden">
+            <div className="relative w-full h-80 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 rounded-lg overflow-hidden shadow-inner">
               <svg width="100%" height="100%" viewBox="0 0 450 300" className="absolute inset-0">
                 {/* Draw tracks */}
                 {tracks.map((track) => (
@@ -104,7 +110,9 @@ export function TrainTracking() {
                     x2={track.end.x}
                     y2={track.end.y}
                     stroke={getTrackColor(track.status)}
-                    strokeWidth="4"
+                    strokeWidth="6"
+                    strokeLinecap="round"
+                    className="drop-shadow-sm"
                   />
                 ))}
                 
@@ -116,8 +124,9 @@ export function TrainTracking() {
                       y={station.position.y - 10}
                       width="30"
                       height="20"
-                      fill="#1f2937"
+                      fill="url(#stationGradient)"
                       rx="3"
+                      className="drop-shadow-md"
                     />
                     <text
                       x={station.position.x}
@@ -130,16 +139,25 @@ export function TrainTracking() {
                   </g>
                 ))}
                 
+                {/* Gradient definitions */}
+                <defs>
+                  <linearGradient id="stationGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#1f2937" />
+                    <stop offset="100%" stopColor="#374151" />
+                  </linearGradient>
+                </defs>
+                
                 {/* Draw trains */}
                 {trains.map((train) => (
                   <g key={train.id}>
                     <circle
                       cx={train.position.x}
                       cy={train.position.y}
-                      r="8"
+                      r="10"
                       fill={train.status === "delayed" ? "#ef4444" : train.status === "moving" ? "#22c55e" : "#f59e0b"}
                       stroke="#fff"
-                      strokeWidth="2"
+                      strokeWidth="3"
+                      className="drop-shadow-lg animate-pulse"
                     />
                     <text
                       x={train.position.x}
@@ -154,7 +172,7 @@ export function TrainTracking() {
               </svg>
               
               {/* Legend */}
-              <div className="absolute bottom-4 left-4 bg-white dark:bg-gray-800 rounded-lg p-3 shadow-sm border">
+              <div className="absolute bottom-4 left-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-lg p-3 shadow-lg border">
                 <div className="space-y-2 text-xs">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-1 bg-green-500 rounded"></div>
@@ -175,13 +193,16 @@ export function TrainTracking() {
         </Card>
 
         {/* Train List */}
-        <Card>
+        <Card className="hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-card to-card/80">
           <CardHeader>
-            <CardTitle>Active Trains</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <Train className="h-5 w-5 text-green-500" />
+              Active Trains
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {trains.map((train) => (
-              <div key={train.id} className="flex items-center justify-between p-3 rounded-lg border">
+              <div key={train.id} className="flex items-center justify-between p-3 rounded-lg border hover:shadow-md transition-all duration-200 hover:scale-102 bg-gradient-to-r from-background to-background/80">
                 <div className="flex items-center gap-3">
                   <Train className={`h-4 w-4 ${getStatusColor(train.status)}`} />
                   <div>
@@ -192,7 +213,12 @@ export function TrainTracking() {
                 <div className="text-right space-y-1">
                   {getStatusBadge(train.status)}
                   <div className="text-xs text-muted-foreground">
-                    {train.speed > 0 ? `${train.speed} km/h` : 'Stopped'}
+                    {train.speed > 0 ? (
+                      <span className="flex items-center gap-1">
+                        <Zap className="h-3 w-3" />
+                        {train.speed} km/h
+                      </span>
+                    ) : 'Stopped'}
                   </div>
                   {train.delay > 0 && (
                     <div className="text-xs text-red-600 flex items-center gap-1">
