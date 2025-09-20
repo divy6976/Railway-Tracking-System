@@ -26,14 +26,14 @@ export default function FigmaDesignShowcase() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header Section */}
-      <div className="border-b bg-card p-6">
+      <div className="border-b bg-gradient-to-br from-card to-card/80 p-6">
         <div className="space-y-4">
-          <h1 className="text-2xl font-bold text-center">Railway Control System - Design Showcase</h1>
+          <h1 className="text-2xl font-bold text-center bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Railway Control System - Design Showcase</h1>
           
           {/* Header Components */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Light Mode Header */}
-            <Card>
+            <Card className="border-0 shadow-sm bg-gradient-to-br from-card to-card/80">
               <CardHeader>
                 <CardTitle>Header - Light Mode</CardTitle>
               </CardHeader>
@@ -83,7 +83,7 @@ export default function FigmaDesignShowcase() {
             </Card>
 
             {/* Dark Mode Header */}
-            <Card>
+            <Card className="border-0 shadow-sm bg-gradient-to-br from-card to-card/80">
               <CardHeader>
                 <CardTitle>Header - Dark Mode</CardTitle>
               </CardHeader>
@@ -138,7 +138,7 @@ export default function FigmaDesignShowcase() {
       {/* Navigation Showcase */}
       <div className="p-6 space-y-4">
         <h2 className="text-xl font-semibold">Navigation Tabs</h2>
-        <Card>
+        <Card className="border-0 shadow-sm bg-gradient-to-br from-card to-card/80">
           <CardContent className="p-4">
             <div className="grid grid-cols-4 lg:grid-cols-8 gap-2">
               {[
@@ -170,11 +170,11 @@ export default function FigmaDesignShowcase() {
 
       {/* Dashboard Components Grid */}
       <div className="p-6 space-y-6">
-        <h2 className="text-xl font-semibold">Key Dashboard Components</h2>
+        <h2 className="text-xl font-semibold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Key Dashboard Components</h2>
         
         {/* KPI Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Card>
+          <Card className="border-0 shadow-sm bg-gradient-to-br from-card to-card/80">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-muted-foreground">Active Trains</CardTitle>
             </CardHeader>
@@ -187,7 +187,7 @@ export default function FigmaDesignShowcase() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border-0 shadow-sm bg-gradient-to-br from-card to-card/80">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-muted-foreground">On-Time Performance</CardTitle>
             </CardHeader>
@@ -200,7 +200,7 @@ export default function FigmaDesignShowcase() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border-0 shadow-sm bg-gradient-to-br from-card to-card/80">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-muted-foreground">Average Delay</CardTitle>
             </CardHeader>
@@ -213,7 +213,7 @@ export default function FigmaDesignShowcase() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border-0 shadow-sm bg-gradient-to-br from-card to-card/80">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm text-muted-foreground">System Efficiency</CardTitle>
             </CardHeader>
@@ -230,7 +230,7 @@ export default function FigmaDesignShowcase() {
         {/* Status Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Train Status */}
-          <Card>
+          <Card className="border-0 shadow-sm bg-gradient-to-br from-card to-card/80">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Activity className="h-5 w-5" />
@@ -267,7 +267,7 @@ export default function FigmaDesignShowcase() {
           </Card>
 
           {/* AI Recommendations */}
-          <Card>
+          <Card className="border-0 shadow-sm bg-gradient-to-br from-card to-card/80">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Brain className="h-5 w-5" />
@@ -311,7 +311,7 @@ export default function FigmaDesignShowcase() {
           </Card>
 
           {/* System Alerts */}
-          <Card>
+          <Card className="border-0 shadow-sm bg-gradient-to-br from-card to-card/80">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <AlertCircle className="h-5 w-5" />
@@ -357,7 +357,7 @@ export default function FigmaDesignShowcase() {
 
         {/* Color Palette & Typography */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card>
+          <Card className="border-0 shadow-sm bg-gradient-to-br from-card to-card/80">
             <CardHeader>
               <CardTitle>Color Palette</CardTitle>
             </CardHeader>
@@ -387,7 +387,7 @@ export default function FigmaDesignShowcase() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border-0 shadow-sm bg-gradient-to-br from-card to-card/80">
             <CardHeader>
               <CardTitle>Typography Scale</CardTitle>
             </CardHeader>
@@ -403,7 +403,7 @@ export default function FigmaDesignShowcase() {
         </div>
 
         {/* Button Variations */}
-        <Card>
+        <Card className="border-0 shadow-sm bg-gradient-to-br from-card to-card/80">
           <CardHeader>
             <CardTitle>Button Components</CardTitle>
           </CardHeader>
@@ -423,7 +423,7 @@ export default function FigmaDesignShowcase() {
         </Card>
 
         {/* Badge Variations */}
-        <Card>
+        <Card className="border-0 shadow-sm bg-gradient-to-br from-card to-card/80">
           <CardHeader>
             <CardTitle>Badge Components</CardTitle>
           </CardHeader>

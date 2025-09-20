@@ -52,9 +52,21 @@ export function Dashboard() {
 
   return (
     <div className="space-y-6 relative z-10">
-      <div>
-        <h2 className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">System Overview</h2>
-        <p className="text-muted-foreground">Real-time monitoring of railway section performance</p>
+      {/* Hero Banner */}
+      <div className="relative overflow-hidden rounded-xl border bg-gradient-to-br from-card to-card/80 shadow-sm">
+        <div className="absolute inset-0 opacity-60 pointer-events-none" style={{
+          backgroundImage: 'radial-gradient(circle at 20% 10%, hsl(var(--primary)/0.08), transparent 40%), radial-gradient(circle at 80% 0%, hsl(var(--ring)/0.08), transparent 40%)'
+        }} />
+        <div className="p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <h2 className="text-xl font-semibold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Railway System Overview</h2>
+            <p className="text-muted-foreground">Live health, performance and operations across the section</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">Operational</Badge>
+            <Badge variant="outline">Last sync 12s ago</Badge>
+          </div>
+        </div>
       </div>
 
       {/* KPI Cards */}
