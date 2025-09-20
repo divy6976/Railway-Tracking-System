@@ -37,7 +37,7 @@ export default function FigmaDesignShowcase() {
               <CardHeader>
                 <CardTitle>Header - Light Mode</CardTitle>
               </CardHeader>
-              <CardContent className="bg-white p-4 rounded border">
+              <CardContent className="bg-white p-4 rounded border border-gray-200">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
@@ -87,7 +87,7 @@ export default function FigmaDesignShowcase() {
               <CardHeader>
                 <CardTitle>Header - Dark Mode</CardTitle>
               </CardHeader>
-              <CardContent className="bg-gray-900 text-white p-4 rounded border">
+              <CardContent className="bg-gray-900 text-white p-4 rounded border border-gray-700 rail-lines">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
