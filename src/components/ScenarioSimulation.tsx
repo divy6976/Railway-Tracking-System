@@ -89,7 +89,7 @@ export function ScenarioSimulation() {
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
         {/* Simulation Setup */}
-        <Card className="xl:col-span-2">
+        <Card className="xl:col-span-2 hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-card to-card/80">
           <CardHeader>
             <CardTitle>Simulation Setup</CardTitle>
           </CardHeader>
@@ -225,7 +225,7 @@ export function ScenarioSimulation() {
         </Card>
 
         {/* Quick Scenarios */}
-        <Card>
+        <Card className="hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-card to-card/80">
           <CardHeader>
             <CardTitle>Quick Scenarios</CardTitle>
           </CardHeader>
@@ -252,7 +252,7 @@ export function ScenarioSimulation() {
 
       {/* Simulation Results */}
       {simulationResults && (
-        <Card>
+        <Card className="hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-card to-card/80">
           <CardHeader>
             <CardTitle>Simulation Results</CardTitle>
           </CardHeader>
@@ -288,11 +288,20 @@ export function ScenarioSimulation() {
               </div>
             </div>
 
-            <div className="mt-4 p-4 rounded-lg bg-blue-50 border border-blue-200">
+            <div className="mt-4 p-4 rounded-lg bg-blue-50 border border-blue-200 dark:bg-blue-950 dark:border-blue-900">
               <p className="text-sm text-blue-800">
                 <strong>Analysis Complete:</strong> The simulation shows moderate impact on operations. 
                 Implementing the recommended mitigation strategies could reduce delay impact by up to 60%.
               </p>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+      {isSimulating && (
+        <Card className="border-0 bg-gradient-to-br from-card to-card/80">
+          <CardContent>
+            <div className="h-24 flex items-center justify-center text-sm text-muted-foreground">
+              Running simulation...
             </div>
           </CardContent>
         </Card>

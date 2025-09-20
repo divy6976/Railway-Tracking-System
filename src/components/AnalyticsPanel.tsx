@@ -144,18 +144,18 @@ export function AnalyticsPanel() {
         
         <TabsContent value="performance" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card>
+            <Card className="hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-card to-card/80">
               <CardHeader>
                 <CardTitle>Hourly Throughput & Delays</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={performanceData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="time" />
-                    <YAxis yAxisId="left" />
-                    <YAxis yAxisId="right" orientation="right" />
-                    <Tooltip />
+                    <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.3} />
+                    <XAxis dataKey="time" tick={{ fill: 'currentColor', opacity: 0.6 }} axisLine={{ strokeOpacity: 0.2 }} tickLine={{ strokeOpacity: 0.2 }} />
+                    <YAxis yAxisId="left" tick={{ fill: 'currentColor', opacity: 0.6 }} axisLine={{ strokeOpacity: 0.2 }} tickLine={{ strokeOpacity: 0.2 }} />
+                    <YAxis yAxisId="right" orientation="right" tick={{ fill: 'currentColor', opacity: 0.6 }} axisLine={{ strokeOpacity: 0.2 }} tickLine={{ strokeOpacity: 0.2 }} />
+                    <Tooltip contentStyle={{ background: 'var(--popover)', color: 'var(--popover-foreground)', border: '1px solid var(--border)' }} />
                     <Bar yAxisId="left" dataKey="throughput" fill="#3b82f6" name="Throughput" />
                     <Bar yAxisId="right" dataKey="delays" fill="#ef4444" name="Delays" />
                   </BarChart>
@@ -163,17 +163,17 @@ export function AnalyticsPanel() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-card to-card/80">
               <CardHeader>
                 <CardTitle>Punctuality Trend</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
                   <LineChart data={performanceData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="time" />
-                    <YAxis domain={[85, 100]} />
-                    <Tooltip />
+                    <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.3} />
+                    <XAxis dataKey="time" tick={{ fill: 'currentColor', opacity: 0.6 }} axisLine={{ strokeOpacity: 0.2 }} tickLine={{ strokeOpacity: 0.2 }} />
+                    <YAxis domain={[85, 100]} tick={{ fill: 'currentColor', opacity: 0.6 }} axisLine={{ strokeOpacity: 0.2 }} tickLine={{ strokeOpacity: 0.2 }} />
+                    <Tooltip contentStyle={{ background: 'var(--popover)', color: 'var(--popover-foreground)', border: '1px solid var(--border)' }} />
                     <Line type="monotone" dataKey="punctuality" stroke="#10b981" strokeWidth={2} />
                   </LineChart>
                 </ResponsiveContainer>
@@ -184,17 +184,17 @@ export function AnalyticsPanel() {
 
         <TabsContent value="trends" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card>
+            <Card className="hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-card to-card/80">
               <CardHeader>
                 <CardTitle>Weekly Performance</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={weeklyTrends}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" />
-                    <YAxis />
-                    <Tooltip />
+                    <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.3} />
+                    <XAxis dataKey="day" tick={{ fill: 'currentColor', opacity: 0.6 }} axisLine={{ strokeOpacity: 0.2 }} tickLine={{ strokeOpacity: 0.2 }} />
+                    <YAxis tick={{ fill: 'currentColor', opacity: 0.6 }} axisLine={{ strokeOpacity: 0.2 }} tickLine={{ strokeOpacity: 0.2 }} />
+                    <Tooltip contentStyle={{ background: 'var(--popover)', color: 'var(--popover-foreground)', border: '1px solid var(--border)' }} />
                     <Bar dataKey="onTime" stackId="a" fill="#10b981" />
                     <Bar dataKey="delayed" stackId="a" fill="#f59e0b" />
                     <Bar dataKey="cancelled" stackId="a" fill="#ef4444" />
@@ -203,7 +203,7 @@ export function AnalyticsPanel() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-card to-card/80">
               <CardHeader>
                 <CardTitle>Delay Reasons</CardTitle>
               </CardHeader>
@@ -223,7 +223,7 @@ export function AnalyticsPanel() {
                         <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
                     </Pie>
-                    <Tooltip />
+                    <Tooltip contentStyle={{ background: 'var(--popover)', color: 'var(--popover-foreground)', border: '1px solid var(--border)' }} />
                   </PieChart>
                 </ResponsiveContainer>
               </CardContent>

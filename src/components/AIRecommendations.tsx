@@ -97,6 +97,19 @@ export function AIRecommendations() {
     }
   };
 
+  const [approved, setApproved] = useState<string[]>([]);
+  const [rejected, setRejected] = useState<string[]>([]);
+
+  const toggleApprove = (id: string) => {
+    setApproved((prev) => (prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]));
+    setRejected((prev) => prev.filter(x => x !== id));
+  };
+
+  const toggleReject = (id: string) => {
+    setRejected((prev) => (prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]));
+    setApproved((prev) => prev.filter(x => x !== id));
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -116,7 +129,7 @@ export function AIRecommendations() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {recommendations.map((rec) => (
-          <Card key={rec.id} className="relative hover:shadow-lg transition-all duration-300 hover:scale-102 border-0 bg-gradient-to-br from-card to-card/80">
+          <Card key={rec.id} className={`relative hover:shadow-lg transition-all duration-300 hover:scale-102 border-0 bg-gradient-to-br from-card to-card/80 ${approved.includes(rec.id) ? 'ring-2 ring-green-500/40' : rejected.includes(rec.id) ? 'ring-2 ring-red-500/40' : ''}`}>
             <CardHeader className="pb-3">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-2">
@@ -128,6 +141,11 @@ export function AIRecommendations() {
                 </Badge>
               </div>
               <p className="text-sm text-muted-foreground">{rec.description}</p>
+              {(approved.includes(rec.id) || rejected.includes(rec.id)) && (
+                <div className={`mt-2 text-xs font-medium ${approved.includes(rec.id) ? 'text-green-600' : 'text-red-600'}`}>
+                  {approved.includes(rec.id) ? 'Approved' : 'Rejected'}
+                </div>
+              )}
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
@@ -169,13 +187,13 @@ export function AIRecommendations() {
               </div>
 
               <div className="flex gap-2 pt-2">
-                <Button size="sm" className="flex-1 hover:scale-105 transition-transform">
+                <Button size="sm" className="flex-1 hover:scale-105 transition-transform" variant={approved.includes(rec.id) ? 'secondary' : 'default'} onClick={() => toggleApprove(rec.id)}>
                   <CheckCircle className="h-4 w-4 mr-1" />
-                  Approve
+                  {approved.includes(rec.id) ? 'Undo' : 'Approve'}
                 </Button>
-                <Button size="sm" variant="outline" className="flex-1 hover:scale-105 transition-transform">
+                <Button size="sm" variant={rejected.includes(rec.id) ? 'secondary' : 'outline'} className="flex-1 hover:scale-105 transition-transform" onClick={() => toggleReject(rec.id)}>
                   <XCircle className="h-4 w-4 mr-1" />
-                  Reject
+                  {rejected.includes(rec.id) ? 'Undo' : 'Reject'}
                 </Button>
                 <Button size="sm" variant="secondary">
                   Details

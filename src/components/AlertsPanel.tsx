@@ -140,6 +140,8 @@ export function AlertsPanel() {
   const warningAlerts = alerts.filter(a => a.type === "warning" && !a.acknowledged);
   const unacknowledgedCount = alerts.filter(a => !a.acknowledged).length;
 
+  const clearAll = () => setAlerts([]);
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -158,7 +160,7 @@ export function AlertsPanel() {
               {unacknowledgedCount} Unacknowledged
             </Badge>
           )}
-          <Button variant="outline" size="sm" className="hover:scale-105 transition-transform">
+          <Button variant="outline" size="sm" onClick={clearAll} className="hover:scale-105 transition-transform">
             Clear All
           </Button>
         </div>
@@ -217,6 +219,11 @@ export function AlertsPanel() {
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0">
+          {alerts.length === 0 ? (
+            <div className="h-48 flex items-center justify-center text-sm text-muted-foreground">
+              All clear. No active alerts.
+            </div>
+          ) : (
           <ScrollArea className="h-96">
             <div className="space-y-2 p-4">
               {alerts.map((alert) => (
@@ -284,6 +291,7 @@ export function AlertsPanel() {
               ))}
             </div>
           </ScrollArea>
+          )}
         </CardContent>
       </Card>
     </div>
