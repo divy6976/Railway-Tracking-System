@@ -66,3 +66,47 @@ code, pre, kbd, samp {
   transform: translate3d(0,0,0);
 }
 
+/* Railway-branded palette overrides */
+:root {
+  /* Deep railway navy as primary; safety yellow as accent highlights */
+  --primary: #0f1b3a;              /* Deep navy */
+  --primary-foreground: #ffffff;
+  --accent: #f4c430;               /* Safety yellow */
+  --accent-foreground: #0b0b12;
+  --ring: #3354c5;                 /* Signal blue ring */
+  /* Charts tuned to railway palette */
+  --chart-1: #3354c5;  /* throughput */
+  --chart-2: #10b981;  /* success */
+  --chart-3: #f59e0b;  /* warning */
+  --chart-4: #ef4444;  /* delay */
+  --chart-5: #8b5cf6;  /* misc */
+}
+
+.dark {
+  --primary: #acc2ff;              /* Lighter blue on dark */
+  --primary-foreground: #0b0b12;
+  --accent: #ffd35a;               /* Safety yellow on dark */
+  --accent-foreground: #0b0b12;
+  --ring: #6f8aff;
+}
+
+/* Optional diagonal rail lines accent for hero areas */
+.rail-lines {
+  position: relative;
+}
+.rail-lines:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image:
+    repeating-linear-gradient(
+      135deg,
+      hsl(var(--foreground)) 0px,
+      hsl(var(--foreground)) 1px,
+      transparent 1px,
+      transparent 10px
+    );
+}
+

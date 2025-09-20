@@ -91,12 +91,12 @@ export default function FigmaDesignShowcase() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                        <MapPin className="h-5 w-5 text-black" />
+                      <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #0f1b3a, #3354c5)' }}>
+                        <MapPin className="h-5 w-5 text-white" />
                       </div>
                       <div>
                         <div className="font-semibold text-white">Railway Control Center</div>
-                        <div className="text-xs text-gray-400">Section A - Central District</div>
+                        <div className="text-xs text-gray-300">Section A - Central District</div>
                       </div>
                     </div>
                     
@@ -112,12 +112,12 @@ export default function FigmaDesignShowcase() {
                   <div className="flex items-center gap-3">
                     <div className="text-right text-sm">
                       <div className="font-medium text-white">Controller A</div>
-                      <div className="text-gray-400">Day Shift</div>
+                      <div className="text-gray-300">Day Shift</div>
                     </div>
-                    <Button variant="outline" size="sm" className="border-gray-600 text-gray-300">
+                    <Button variant="outline" size="sm" className="border-gray-600 text-gray-200 bg-gray-800">
                       <Sun className="h-4 w-4" />
                     </Button>
-                    <Button variant="outline" size="sm" className="border-gray-600 text-gray-300">
+                    <Button variant="outline" size="sm" className="border-gray-600 text-gray-200 bg-gray-800">
                       <Shield className="h-4 w-4 mr-2" />
                       Supervisor
                     </Button>
